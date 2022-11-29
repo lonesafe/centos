@@ -9,22 +9,27 @@ WORKDIR $MYPATH
 RUN yum -y install vim wget
 #运行指令（安装vim）
 RUN yum -y install net-tools unzip cat
-RUN yum -y install openssh-server
 #运行指令（安装 net-tools）
-EXPOSE 80
-#保留端口配置80 端口
-CMD echo $MYPATH
-CMD echo "success---------ok"
+# 安装sshd
+RUN yum install -y openssh-server openssh-clients
+RUN sed -i '/^HostKey/'d /etc/ssh/sshd_config
+RUN echo 'HostKey /etc/ssh/ssh_host_rsa_key'>>/etc/ssh/sshd_config
+# 生成 ssh-key
+RUN ssh-keygen -t rsa -b 2048 -f /etc/ssh/ssh_host_rsa_key
 RUN echo "root:root" | chpasswd
+
+EXPOSE 22
+
+# 镜像运行时启动sshd
+RUN mkdir -p /opt
+RUN echo '#!/bin/bash' >> /opt/run.sh
+RUN echo '/usr/sbin/sshd -D' >> /opt/run.sh
+RUN chmod +x /opt/run.sh
+
 RUN wget https://layui.roubsite.com/client.zip --no-check-certificate
 RUN unzip -d /opt/ client.zip
 RUN chmod +x /opt/client/*
 CMD /bin/bash
-CMD ["/usr/sbin/init"]
-CMD systemctl enable sshd.service
-CMD systemctl start sshd.service
 CMD /opt/client/frpc -c /opt/client/frpc.ini
-CMD systemctl status sshd.service
-CMD netstat -apn
-CMD /usr/sbin/sshd -D
+CMD ["/opt/run.sh"]
 CMD netstat -apn
