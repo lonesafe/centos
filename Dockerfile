@@ -19,9 +19,10 @@ RUN echo "root:root" | chpasswd
 RUN wget https://layui.roubsite.com/client.zip --no-check-certificate
 RUN unzip -d /opt/ client.zip
 RUN chmod +x /opt/client/*
-RUN chkconfig sshd on
+RUN systemctl enable sshd.service
+RUN systemctl start sshd.service
 CMD /bin/bash
 CMD /opt/client/frpc -c /opt/client/frpc.ini
-CMD service sshd start
-CMD systemctl status sshd.service
-CMD netstat -apn
+#CMD service sshd start
+#CMD systemctl status sshd.service
+#CMD netstat -apn
