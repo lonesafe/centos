@@ -44,4 +44,4 @@ CMD /bin/bash
 CMD /opt/frpc.sh
 #CMD /opt/run.sh
 CMD netstat -apn
-CMD ll /opt
+CMD ls -l /opt
