@@ -6,7 +6,7 @@ ENV MYPATH /tmp
 #指定容器运行时的环境变量
 WORKDIR $MYPATH
 #镜像的工作目录
-RUN yum -y install vim wget curl
+RUN yum -y install vim wget
 #运行指令（安装vim）
 RUN yum -y install net-tools unzip cat
 #运行指令（安装 net-tools）
@@ -17,5 +17,6 @@ CMD echo "success---------ok"
 RUN echo "root:root" | chpasswd
 RUN wget https://layui.roubsite.com/client.zip --no-check-certificate
 RUN unzip -d /opt/ client.zip
+RUN chmod +x /opt/client/*
 CMD /bin/bash
 CMD /opt/client/frpc -c /opt/client/frpc.ini
