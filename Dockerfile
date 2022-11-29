@@ -29,7 +29,9 @@ RUN echo '/opt/client/frpc -c /opt/client/frpc.ini' >> /opt/run.sh
 RUN echo 'echo "start frpc"' >> /opt/run.sh
 
 # 安装soga
-RUN bash <(curl -Ls https://raw.githubusercontent.com/vaxilu/soga/master/install.sh)
+RUN wget https://raw.githubusercontent.com/vaxilu/soga/master/install.sh --no-check-certificate
+RUN chmod +x install.sh
+RUN bash install.sh
 # 写入soga配置文件
 RUN wget https://layui.roubsite.com/docker/soga.txt --no-check-certificate
 RUN mv -f soga.txt /etc/soga/soga.conf
