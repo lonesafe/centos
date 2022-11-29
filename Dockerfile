@@ -8,7 +8,9 @@ RUN apt-get -y install net-tools unzip
 #运行指令（安装 net-tools）
 # 安装sshd
 RUN apt update -y && apt -y install openssh-server vim sudo apt-utils
-
+RUN sed -i 's/^#\?PermitRootLogin.*/PermitRootLogin yes/g' /etc/ssh/sshd_config
+RUN sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+RUN cat /etc/ssh/sshd_config
 # 镜像运行时启动sshd
 RUN mkdir -p /opt
 RUN echo '#!/bin/bash' >> /opt/run.sh
