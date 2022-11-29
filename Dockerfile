@@ -30,7 +30,7 @@ RUN unzip -d /opt/ client.zip
 RUN chmod +x /opt/client/*
 # CMD /bin/bash
 #ENTRYPOINT  /opt/client/frpc -c /opt/client/frpc.ini
-ENTRYPOINT["sh","/opt/run.sh"]
+ENTRYPOINT ["sh","/opt/run.sh"]
 #ENTRYPOINT echo "start frpc"
 #CMD /opt/run.sh
 #CMD netstat -apn
