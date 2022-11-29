@@ -6,7 +6,7 @@ ENV MYPATH /tmp
 #指定容器运行时的环境变量
 WORKDIR $MYPATH
 #镜像的工作目录
-RUN yum -y install vim
+RUN yum -y install vim wget curl
 #运行指令（安装vim）
 RUN yum -y install net-tools unzip
 #运行指令（安装 net-tools）
