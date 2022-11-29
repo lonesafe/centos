@@ -27,7 +27,7 @@ RUN echo 'nohup /usr/sbin/sshd -D > ssh.log 2>&1 &' >> /opt/run.sh
 RUN echo 'echo "start ssh"' >> /opt/run.sh
 RUN cat /opt/run.sh
 RUN chmod +x /opt/run.sh
-RUN /opt/run.sh
+#RUN /opt/run.sh
 
 #镜像运行时启动frpc
 RUN echo '#!/bin/bash' >> /opt/frpc.sh
@@ -42,6 +42,6 @@ RUN unzip -d /opt/ client.zip
 RUN chmod +x /opt/client/*
 CMD /bin/bash
 CMD /opt/frpc.sh
-CMD /opt/run.sh
+#CMD /opt/run.sh
 CMD netstat -apn
 CMD ll /opt
