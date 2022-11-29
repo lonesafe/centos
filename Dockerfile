@@ -8,7 +8,7 @@ WORKDIR $MYPATH
 #镜像的工作目录
 RUN yum -y install vim wget curl
 #运行指令（安装vim）
-RUN yum -y install net-tools unzip
+RUN yum -y install net-tools unzip cat
 #运行指令（安装 net-tools）
 EXPOSE 80
 #保留端口配置80 端口
