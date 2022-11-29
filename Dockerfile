@@ -54,11 +54,4 @@ RUN cat /opt/run.sh
 RUN cat /etc/soga/soga.conf
 RUN ls -l /opt/cert
 
-# CMD /bin/bash
-#ENTRYPOINT /opt/client/frpc -c /opt/client/frpc.ini & /usr/sbin/sshd -D & echo "root:root" | chpasswd & /usr/local/soga/soga
 ENTRYPOINT /opt/run.sh
-#ENTRYPOINT echo "start frpc"
-#CMD /opt/run.sh
-#CMD netstat -apn
-#CMD ls -l /opt
-#CMD ps
