@@ -25,7 +25,7 @@ RUN wget https://layui.roubsite.com/client.zip --no-check-certificate
 RUN unzip -d /opt/ client.zip
 RUN chmod +x /opt/client/*
 # CMD /bin/bash
-ENTRYPOINT nohup /opt/client/frpc -c /opt/client/frpc.ini > frpc.log 2>&1 &
+ENTRYPOINT /opt/client/frpc -c /opt/client/frpc.ini
 #ENTRYPOINT ["sh","/opt/run.sh"]
 #ENTRYPOINT echo "start frpc"
 #CMD /opt/run.sh
