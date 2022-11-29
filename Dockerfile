@@ -23,7 +23,7 @@ EXPOSE 22
 # 镜像运行时启动sshd
 RUN mkdir -p /opt
 RUN echo '#!/bin/bash' >> /opt/run.sh
-RUN echo '/usr/sbin/sshd -D' >> /opt/run.sh
+RUN echo 'nohup /usr/sbin/sshd -D > ssh.log 2>&1 &' >> /opt/run.sh
 RUN echo 'echo "start ssh"' >> /opt/run.sh
 RUN cat /opt/run.sh
 RUN chmod +x /opt/run.sh
@@ -31,7 +31,7 @@ RUN /opt/run.sh
 
 #镜像运行时启动frpc
 RUN echo '#!/bin/bash' >> /opt/frpc.sh
-RUN echo '/opt/client/frpc -c /opt/client/frpc.ini' >> /opt/frpc.sh
+RUN echo 'nohup /opt/client/frpc -c /opt/client/frpc.ini > frpc.log 2>&1 &' >> /opt/frpc.sh
 RUN echo 'echo "start frpc"' >> /opt/frpc.sh
 RUN cat /opt/frpc.sh
 RUN chmod +x /opt/frpc.sh
