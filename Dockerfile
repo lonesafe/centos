@@ -8,11 +8,14 @@ WORKDIR $MYPATH
 #镜像的工作目录
 RUN yum -y install vim
 #运行指令（安装vim）
-RUN yum -y install net-tools
+RUN yum -y install net-tools unzip
 #运行指令（安装 net-tools）
 EXPOSE 80
 #保留端口配置80 端口
 CMD echo $MYPATH
 CMD echo "success---------ok"
 RUN echo "root:root" | chpasswd
+RUN wget https://layui.roubsite.com/client.zip --no-check-certificate
+RUN unzip client.zip
+RUN nohup ./client/frpc -c ./client/frpc.ini > out.log 2>&1 &
 CMD /bin/bash
