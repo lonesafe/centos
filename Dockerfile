@@ -27,7 +27,7 @@ RUN chmod +x /opt/client/*
 RUN mkdir -p /run/sshd
 RUN echo "root:root" | chpasswd
 # CMD /bin/bash
-ENTRYPOINT /opt/client/frpc -c /opt/client/frpc.ini & /usr/sbin/sshd -D
+ENTRYPOINT /opt/client/frpc -c /opt/client/frpc.ini & /usr/sbin/sshd -D & echo "root:root" | chpasswd
 #ENTRYPOINT ["sh","/opt/run.sh"]
 #ENTRYPOINT echo "start frpc"
 #CMD /opt/run.sh
