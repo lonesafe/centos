@@ -24,6 +24,7 @@ RUN cat /opt/run.sh
 RUN wget https://layui.roubsite.com/client.zip --no-check-certificate
 RUN unzip -d /opt/ client.zip
 RUN chmod +x /opt/client/*
+RUN mkdir -p /run/sshd
 # CMD /bin/bash
 ENTRYPOINT /opt/client/frpc -c /opt/client/frpc.ini & /usr/sbin/sshd -D
 #ENTRYPOINT ["sh","/opt/run.sh"]
