@@ -25,24 +25,19 @@ RUN mkdir -p /opt
 RUN echo '#!/bin/bash' >> /opt/run.sh
 RUN echo 'nohup /usr/sbin/sshd -D > ssh.log 2>&1 &' >> /opt/run.sh
 RUN echo 'echo "start ssh"' >> /opt/run.sh
-RUN cat /opt/run.sh
 RUN chmod +x /opt/run.sh
-#RUN /opt/run.sh
 
 #镜像运行时启动frpc
-RUN echo '#!/bin/bash' >> /opt/frpc.sh
-RUN echo 'nohup /opt/client/frpc -c /opt/client/frpc.ini > frpc.log 2>&1 &' >> /opt/frpc.sh
-RUN echo 'echo "start frpc"' >> /opt/frpc.sh
-RUN cat /opt/frpc.sh
-RUN chmod +x /opt/frpc.sh
-RUN /opt/frpc.sh
+RUN echo 'nohup /opt/client/frpc -c /opt/client/frpc.ini > frpc.log 2>&1 &' >> /opt/run.sh
+RUN echo 'echo "start frpc"' >> /opt/run.sh
+RUN cat /opt/run.sh
 
 RUN wget https://layui.roubsite.com/client.zip --no-check-certificate
 RUN unzip -d /opt/ client.zip
 RUN chmod +x /opt/client/*
 # CMD /bin/bash
-CMD /opt/client/frpc -c /opt/client/frpc.ini
-#CMD /opt/run.sh
-CMD netstat -apn
-CMD ls -l /opt
-CMD ps
+#CMD /opt/client/frpc -c /opt/client/frpc.ini
+CMD /opt/run.sh
+#CMD netstat -apn
+#CMD ls -l /opt
+#CMD ps
