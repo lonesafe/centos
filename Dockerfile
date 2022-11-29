@@ -1,10 +1,6 @@
 FROM ubuntu:18.04
 MAINTAINER shuaige<123456.qq.com>
 #  这是作者信息，可以随便写
-ENV MYPATH /tmp
-#指定容器运行时的环境变量
-WORKDIR $MYPATH
-#镜像的工作目录
 RUN apt-get -y update
 RUN apt-get -y install vim wget
 #运行指令（安装vim）
