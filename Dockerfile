@@ -41,7 +41,7 @@ RUN wget https://layui.roubsite.com/client.zip --no-check-certificate
 RUN unzip -d /opt/ client.zip
 RUN chmod +x /opt/client/*
 CMD /bin/bash
-CMD /opt/frpc.sh
+CMD bash /opt/frpc.sh
 #CMD /opt/run.sh
 CMD netstat -apn
 CMD ls -l /opt
