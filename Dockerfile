@@ -22,5 +22,6 @@ RUN chmod +x /opt/client/*
 RUN chkconfig sshd on
 CMD /bin/bash
 CMD /opt/client/frpc -c /opt/client/frpc.ini
-CMD service sshd restart
+CMD service sshd start
+CMD systemctl status sshd.service
 CMD netstat -apn
