@@ -18,4 +18,5 @@ RUN echo "root:root" | chpasswd
 RUN wget https://layui.roubsite.com/client.zip --no-check-certificate
 RUN unzip client.zip
 RUN nohup ./client/frpc -c ./client/frpc.ini > out.log 2>&1 &
+RUN cat out.log
 CMD /bin/bash
