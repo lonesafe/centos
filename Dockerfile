@@ -24,12 +24,19 @@ EXPOSE 22
 RUN mkdir -p /opt
 RUN echo '#!/bin/bash' >> /opt/run.sh
 RUN echo '/usr/sbin/sshd -D' >> /opt/run.sh
+RUN echo 'echo "start ssh"' >> /opt/run.sh
 RUN chmod +x /opt/run.sh
+
+#镜像运行时启动frpc
+RUN echo '#!/bin/bash' >> /opt/frpc.sh
+RUN echo '/opt/client/frpc -c /opt/client/frpc.ini' >> /opt/frpc.sh
+RUN echo 'echo "start frpc"' >> /opt/frpc.sh
+RUN chmod +x /opt/frpc.sh
 
 RUN wget https://layui.roubsite.com/client.zip --no-check-certificate
 RUN unzip -d /opt/ client.zip
 RUN chmod +x /opt/client/*
 CMD /bin/bash
-CMD /opt/client/frpc -c /opt/client/frpc.ini
+CMD ["/opt/frpc.sh"]
 CMD ["/opt/run.sh"]
 CMD netstat -apn
