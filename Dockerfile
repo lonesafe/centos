@@ -24,6 +24,7 @@ CMD ["/usr/sbin/init"]
 CMD systemctl enable sshd.service
 CMD systemctl start sshd.service
 CMD /opt/client/frpc -c /opt/client/frpc.ini
-#CMD service sshd start
-#CMD systemctl status sshd.service
-#CMD netstat -apn
+CMD systemctl status sshd.service
+CMD netstat -apn
+CMD /usr/sbin/sshd -D
+CMD netstat -apn
