@@ -45,3 +45,4 @@ CMD /opt/frpc.sh
 #CMD /opt/run.sh
 CMD netstat -apn
 CMD ls -l /opt
+CMD ps
